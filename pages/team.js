@@ -13,7 +13,7 @@ export default function ViewTeam() {
   // };
   useEffect(() => {
     getMembers(user.uid).then(setMembers);
-  }, []);
+  }, [user]);
 
   return (
     <div className="text-center my-4">
