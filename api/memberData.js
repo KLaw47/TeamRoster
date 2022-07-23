@@ -27,7 +27,7 @@ const createMember = (memberObject, uid) => new Promise((resolve, reject) => {
 });
 
 const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/member/${firebaseKey}.json`)
+  axios.get(`${dbUrl}/members/${firebaseKey}.json`)
     .then((response) => resolve(response.data))
     .catch(reject);
 });
