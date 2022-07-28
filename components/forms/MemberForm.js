@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
+import { getTeams } from '../../api/teamData';
 
 const initialState = {
   imageUrl: '',
@@ -15,11 +16,12 @@ const initialState = {
 
 function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-
+  const [teams, setTeams] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
+    getTeams(user.uid).then(setTeams);
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
 
@@ -39,7 +41,7 @@ function MemberForm({ obj }) {
     } else {
       const payload = { ...formInput, uid: user.uid };
       createMember(payload).then(() => {
-        router.push('/team');
+        router.push('/teamMembers');
       });
     }
   };
@@ -56,6 +58,28 @@ function MemberForm({ obj }) {
       <FloatingLabel controlId="floatingTextarea" label="Position" className="mb-3">
         <Form.Control as="textarea" placeholder="Position" style={{ height: '100px' }} name="position" value={formInput.position} onChange={handleChange} required />
       </FloatingLabel>
+      <FloatingLabel controlId="floatingSelect" label="Team">
+        <Form.Select
+          aria-label="Team"
+          name="teamId"
+          onChange={handleChange}
+          className="mb-3"
+          required
+        >
+          <option value="">Select Team</option>
+          {
+            teams.map((team) => (
+              <option
+                key={team.firebaseKey}
+                value={team.firebaseKey}
+                selected={obj.teamId === team.firebaseKey}
+              >
+                {team.name}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Player</Button>
     </Form>
   );
@@ -67,6 +91,7 @@ MemberForm.propTypes = {
     imageUrl: PropTypes.string,
     position: PropTypes.string,
     firebaseKey: PropTypes.string,
+    teamId: PropTypes.string,
   }),
 };
 
