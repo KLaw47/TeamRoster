@@ -32,7 +32,7 @@ const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const deleteSingleMember = (uid) => new Promise((resolve, reject) => {
+const deleteMember = (uid) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/members/${uid}.json`)
     .then(() => {
       getMembers(uid).then(resolve);
@@ -50,6 +50,6 @@ export {
   getMembers,
   getSingleMember,
   createMember,
-  deleteSingleMember,
+  deleteMember,
   updateMember,
 };
