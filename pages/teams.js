@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
@@ -18,6 +19,10 @@ export default function ViewTeams() {
 
   return (
     <div className="text-center my-4">
+      <Head>
+        <title>TeamRostr-teams</title>
+        <meta name="description" content="allTeams" />
+      </Head>
       <h1>Alpha Quadrant Baseball League</h1>
       <Link href="/team/new" passHref>
         <Button>Add A Team</Button>

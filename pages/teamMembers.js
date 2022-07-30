@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { getMembers } from '../api/memberData';
@@ -23,6 +24,10 @@ export default function ViewTeam() {
 
   return (
     <div className="text-center my-4">
+      <Head>
+        <title>TeamRostr-teamMembers</title>
+        <meta name="description" content="allTeamMembers" />
+      </Head>
       <Search members={members} setFilteredMembers={setFilteredMembers} />
       <h1>Alpha Quadrant Baseball League</h1>
       <Link href="/member/new" passHref>
