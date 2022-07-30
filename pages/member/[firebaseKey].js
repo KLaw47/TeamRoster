@@ -17,12 +17,12 @@ export default function ViewMember() {
       <div className="d-flex flex-column">
         <img src={memberDetails.imageUrl} alt={memberDetails.name} style={{ width: '300px' }} />
       </div>
-      <div className="text-white ms-5 details">
-        <h5>
+      <div className="text-black ms-5 details">
+        <h1>
           {memberDetails.name}
-        </h5>
-        Position:
-        <p>{memberDetails.position}</p>
+        </h1>
+        <h2>Position:</h2>
+        <h3>{memberDetails.position}</h3>
         <hr />
       </div>
     </div>
