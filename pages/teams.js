@@ -18,6 +18,7 @@ export default function ViewTeams() {
 
   return (
     <div className="text-center my-4">
+      <h1>Alpha Quadrant Baseball League</h1>
       <Link href="/team/new" passHref>
         <Button>Add A Team</Button>
       </Link>

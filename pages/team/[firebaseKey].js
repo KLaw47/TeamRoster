@@ -10,14 +10,14 @@ export default function ViewTeamDetail() {
 
   useEffect(() => {
     viewTeamDetail(firebaseKey).then(setTeamDetail);
-  }, [firebaseKey]);
+  }, [firebaseKey, teamDetail]);
 
   return (
     <>
       <h1>{teamDetail.name}</h1>
       <div>
         {teamDetail.members?.map((member) => (
-          <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={() => (null)} />
+          <MemberCard key={member.firebaseKey} memberObj={member} teamName={teamDetail.name} onUpdate={() => (null)} />
         ))}
       </div>
     </>

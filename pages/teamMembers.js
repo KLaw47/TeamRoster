@@ -24,7 +24,7 @@ export default function ViewTeam() {
   return (
     <div className="text-center my-4">
       <Search members={members} setFilteredMembers={setFilteredMembers} />
-      <h1>THE DREAM TEAM</h1>
+      <h1>Alpha Quadrant Baseball League</h1>
       <Link href="/member/new" passHref>
         <Button>New Player</Button>
       </Link>
